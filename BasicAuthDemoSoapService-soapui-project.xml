@@ -1,163 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="7fb8f7ed-49e8-4af3-bc57-c7c73f41438b" activeEnvironment="Default" name="BasicAuthDemoSoapService" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="285aad14-303d-4275-96a2-732afd30a453" wsaVersion="NONE" name="BasicHttpBinding_IBasicAuthDemoSoapService" type="wsdl" bindingName="{http://AspNetCoreSoapAuthBasicService.net}BasicHttpBinding_IBasicAuthDemoSoapService" soapVersion="1_1" anonymous="optional" definition="https://localhost:7248/BasicAuthDemoSoapService.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://localhost:7248/BasicAuthDemoSoapService.asmx?wsdl"><con:part><con:url>https://localhost:7248/BasicAuthDemoSoapService.asmx?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://AspNetCoreSoapAuthBasicService.net" name="IBasicAuthDemoSoapService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://AspNetCoreSoapAuthBasicService.net" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types>
-    <xs:schema elementFormDefault="qualified" targetNamespace="http://AspNetCoreSoapAuthBasicService.net" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/">
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices"/>
-      <xs:element name="ObtenirDemoSoapReponse">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element minOccurs="1" name="request" nillable="true" type="q1:DemoSoapRequest" xmlns:q1="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="ObtenirDemoSoapReponseResponse">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element minOccurs="1" name="ObtenirDemoSoapReponseResult" nillable="true" type="q2:DemoSoapReponse" xmlns:q2="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
-      <xs:element name="anyType" nillable="true" type="xs:anyType"/>
-      <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
-      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
-      <xs:element name="boolean" nillable="true" type="xs:boolean"/>
-      <xs:element name="byte" nillable="true" type="xs:byte"/>
-      <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
-      <xs:element name="decimal" nillable="true" type="xs:decimal"/>
-      <xs:element name="double" nillable="true" type="xs:double"/>
-      <xs:element name="float" nillable="true" type="xs:float"/>
-      <xs:element name="int" nillable="true" type="xs:int"/>
-      <xs:element name="long" nillable="true" type="xs:long"/>
-      <xs:element name="QName" nillable="true" type="xs:QName"/>
-      <xs:element name="short" nillable="true" type="xs:short"/>
-      <xs:element name="string" nillable="true" type="xs:string"/>
-      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
-      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
-      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
-      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
-      <xs:element name="char" nillable="true" type="tns:char"/>
-      <xs:simpleType name="char">
-        <xs:restriction base="xs:int"/>
-      </xs:simpleType>
-      <xs:element name="duration" nillable="true" type="tns:duration"/>
-      <xs:simpleType name="duration">
-        <xs:restriction base="xs:duration">
-          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
-          <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
-          <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:element name="guid" nillable="true" type="tns:guid"/>
-      <xs:simpleType name="guid">
-        <xs:restriction base="xs:string">
-          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:attribute name="FactoryType" type="xs:QName"/>
-      <xs:attribute name="Id" type="xs:ID"/>
-      <xs:attribute name="Ref" type="xs:IDREF"/>
-    </xs:schema>
-    <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/">
-      <xs:import namespace="http://schemas.datacontract.org/2004/07/System"/>
-      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
-      <xs:complexType name="DemoSoapRequest">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="ChaineIntegRetourDEG" nillable="true" type="xs:string"/>
-          <xs:element nillable="true" type="tns:EnumCodRaisonAppel" name="CodRaisonAppel"/>
-          <xs:element nillable="true" minOccurs="0" name="DateDebutChargeRole" type="xs:dateTime"/>
-          <xs:element nillable="true" minOccurs="0" name="NoSecteurActivite" type="xs:short"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="DemoSoapRequest" nillable="true" type="tns:DemoSoapRequest"/>
-      <xs:simpleType name="EnumCodRaisonAppel">
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="InitierEtape"/>
-          <xs:enumeration value="ExecuterEtape"/>
-          <xs:enumeration value="SignalerErreur"/>
-          <xs:enumeration value="SignalerAnnulation"/>
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:element name="EnumCodRaisonAppel" type="tns:EnumCodRaisonAppel"/>
-      <xs:complexType name="DemoSoapReponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="CodErreur" nillable="true" type="xs:string"/>
-          <xs:element nillable="true" type="tns:EnumCodRetour" name="CodRetour"/>
-          <xs:element minOccurs="0" name="MessageErreur" nillable="true" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="DemoSoapReponse" nillable="true" type="tns:DemoSoapReponse"/>
-      <xs:simpleType name="EnumCodRetour">
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="Succes"/>
-          <xs:enumeration value="ErreurFonctionnelle"/>
-          <xs:enumeration value="ErreurTechnique"/>
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:element name="EnumCodRetour" type="tns:EnumCodRetour"/>
-    </xs:schema>
-    <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/">
-      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
-    </xs:schema>
-  </wsdl:types>
-  <wsdl:message name="IBasicAuthDemoSoapService_ObtenirDemoSoapReponse_InputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenirDemoSoapReponse"/>
-  </wsdl:message>
-  <wsdl:message name="IBasicAuthDemoSoapService_ObtenirDemoSoapReponse_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenirDemoSoapReponseResponse"/>
-  </wsdl:message>
-  <wsdl:portType name="IBasicAuthDemoSoapService">
-    <wsdl:operation name="ObtenirDemoSoapReponse">
-      <wsdl:input wsam:Action="http://AspNetCoreSoapAuthBasicService.net/IBasicAuthDemoSoapService/ObtenirDemoSoapReponse" message="tns:IBasicAuthDemoSoapService_ObtenirDemoSoapReponse_InputMessage"/>
-      <wsdl:output wsam:Action="http://AspNetCoreSoapAuthBasicService.net/IBasicAuthDemoSoapService/ObtenirDemoSoapReponseResponse" message="tns:IBasicAuthDemoSoapService_ObtenirDemoSoapReponse_OutputMessage"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IBasicAuthDemoSoapService" type="tns:IBasicAuthDemoSoapService">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="ObtenirDemoSoapReponse">
-      <soap:operation soapAction="http://AspNetCoreSoapAuthBasicService.net/IBasicAuthDemoSoapService/ObtenirDemoSoapReponse" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="IBasicAuthDemoSoapService">
-    <wsdl:port name="BasicHttpBinding_IBasicAuthDemoSoapService" binding="tns:BasicHttpBinding_IBasicAuthDemoSoapService">
-      <soap:address location="https://localhost:7248/BasicAuthDemoSoapService.asmx"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://localhost:7248/BasicAuthDemoSoapService.asmx</con:endpoint></con:endpoints><con:operation id="06060c51-04d0-4010-a3b6-3579b165fff4" isOneWay="false" action="http://AspNetCoreSoapAuthBasicService.net/IBasicAuthDemoSoapService/ObtenirDemoSoapReponse" name="ObtenirDemoSoapReponse" bindingOperationName="ObtenirDemoSoapReponse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a384c3a2-78d6-4ca5-b27d-39edac55bdb1" name="SansErreurDansRequête"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:7248/BasicAuthDemoSoapService.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:asp="http://AspNetCoreSoapAuthBasicService.net" xmlns:asp1="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:asp="http://AspNetCoreSoapAuthBasicService.net" xmlns:asp1="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices">
    <soapenv:Header/>
    <soapenv:Body>
       <asp:ObtenirDemoSoapReponse>
          <asp:request>
             <!--Optional:-->
-            <asp1:ChaineIntegRetourDEG>abc</asp1:ChaineIntegRetourDEG>
-            <asp1:CodRaisonAppel>ExecuterEtape</asp1:CodRaisonAppel>
+            <asp1:ChaineIntegRetourDEG>chaine</asp1:ChaineIntegRetourDEG>
+            <asp1:CodRaisonAppel>InitierEtape</asp1:CodRaisonAppel>
             <!--Optional:-->
-            <asp1:DateDebutChargeRole>2024-03-02</asp1:DateDebutChargeRole>
+            <asp1:DateDebutChargeRole>2024-03-01</asp1:DateDebutChargeRole>
             <!--Optional:-->
             <asp1:NoSecteurActivite>123</asp1:NoSecteurActivite>
          </asp:request>
       </asp:ObtenirDemoSoapReponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://AspNetCoreSoapAuthBasicService.net/IBasicAuthDemoSoapService/ObtenirDemoSoapReponse"/><con:wsrmConfig version="1.2"/></con:call><con:call id="209e9c19-60ab-4d62-b9f9-6ccd9a5e1ce3" name="AvecErreurDansRequête"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:7248/BasicAuthDemoSoapService.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:asp="http://AspNetCoreSoapAuthBasicService.net" xmlns:asp1="http://schemas.datacontract.org/2004/07/AspNetCoreSoapAuthBasicService.SoapServices">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <asp:ObtenirDemoSoapReponse>\r
-         <asp:request>\r
-            <!--Optional:-->\r
-            <asp1:ChaineIntegRetourDEG>?</asp1:ChaineIntegRetourDEG>\r
-            <asp1:CodRaisonAppel>ExecuterEtape</asp1:CodRaisonAppel>\r
-            <!--Optional:-->\r
-            <asp1:DateDebutChargeRole>2024-03-02</asp1:DateDebutChargeRole>\r
-            <!--Optional:-->\r
-            <asp1:NoSecteurActivite>?</asp1:NoSecteurActivite>\r
-         </asp:request>\r
-      </asp:ObtenirDemoSoapReponse>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://AspNetCoreSoapAuthBasicService.net/IBasicAuthDemoSoapService/ObtenirDemoSoapReponse"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>
