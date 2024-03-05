@@ -53,7 +53,7 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/Service/Authbasic")]
         [Authorize]
         public ActionResult GetAuthbasic()
