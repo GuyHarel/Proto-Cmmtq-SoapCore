@@ -1,4 +1,5 @@
 using AspNetCoreSoapAuthBasicService.SoapServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreSoapAuthBasicService.Controllers
@@ -45,9 +46,30 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
         [HttpPost]
         [Route("/Service/Asmx")]
+        //[Authorize]
         public ActionResult GetAsmx()
         {
             return RedirectPermanent("https://localhost:7248/BasicAuthDemoSoapService.asmx");
+
+        }
+
+        [HttpGet]
+        [Route("/Service/Authbasic")]
+        [Authorize]
+        public ActionResult GetAuthbasic()
+        {
+            string htmlContent = $@"
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>AspNetCoreSoapAuthBasicService</title>
+                </head>
+                <body>
+                   <p>public ActionResult GetAuthbasic()</p>
+                </body>
+                </html>";
+
+            return new ContentResult() { Content = htmlContent, ContentType = "text/html" };
 
         }
     }
