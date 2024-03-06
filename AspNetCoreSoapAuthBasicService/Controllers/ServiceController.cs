@@ -26,6 +26,9 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
         public ActionResult Get()
         {
 
+            Console.WriteLine("ceci est un test de console");
+
+
             _logger.LogInformation("ceci est un test de LogInformation");
             _logger.LogError("ceci est un test de LogError");
 
