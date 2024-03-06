@@ -141,7 +141,7 @@
             <!--Optional:-->
             <asp1:DateDebutChargeRole>2024-03-02</asp1:DateDebutChargeRole>
             <!--Optional:-->
-            <asp1:NoSecteurActivite>123</asp1:NoSecteurActivite>
+            <asp1:NoSecteurActivite></asp1:NoSecteurActivite>
          </asp:request>
       </asp:ObtenirDemoSoapReponse>
    </soapenv:Body>

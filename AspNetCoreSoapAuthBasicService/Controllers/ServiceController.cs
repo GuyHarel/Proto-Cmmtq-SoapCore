@@ -1,6 +1,7 @@
 using AspNetCoreSoapAuthBasicService.SoapServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace AspNetCoreSoapAuthBasicService.Controllers
 {
@@ -27,6 +28,7 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
             var hostName = _configuration.GetSection("Service:HostName").Value;
 
             hostName += "/BasicAuthDemoSoapService.asmx";
+            var soapUser = Environment.GetEnvironmentVariable("SoapUser");
 
             string htmlContent = $@"
                 <!DOCTYPE html>
@@ -38,6 +40,7 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
                     <ul>
                         <li><a href={hostName}>{hostName}</a></li>
                         <li>Version GitHub 2024-03-05 09:15</li>
+                        <li>Version SoapUser: {soapUser} </li>
                     </ul>
                 </body>
                 </html>";
