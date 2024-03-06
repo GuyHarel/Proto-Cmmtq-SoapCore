@@ -29,6 +29,7 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
             hostName += "/BasicAuthDemoSoapService.asmx";
             var soapUser = Environment.GetEnvironmentVariable("SoapUser");
+            var soapPassword = Environment.GetEnvironmentVariable("SoapPassword");
 
             string htmlContent = $@"
                 <!DOCTYPE html>
@@ -41,6 +42,7 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
                         <li><a href={hostName}>{hostName}</a></li>
                         <li>Version GitHub 2024-03-05 09:15</li>
                         <li>Version SoapUser: {soapUser} </li>
+                        <li>Version SoapPassword: {soapPassword} </li>
                     </ul>
                 </body>
                 </html>";
