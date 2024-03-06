@@ -4,6 +4,8 @@ using AspNetCoreSoapAuthBasicService.SoapServices;
 using Microsoft.AspNetCore.Authentication;
 using SoapCore;
 using SoapCore.Extensibility;
+using System.ServiceModel.Channels;
+using System.ServiceModel;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -11,11 +13,7 @@ var environment = builder.Environment;
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-// Ajouter l'authentication basic (pour les route de controler avec  [Authorize]
-builder.Services.AddAuthentication("BasicAuthentication")
-    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-
+builder.Services.AddSoapCore();
 
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
@@ -26,10 +24,14 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
+//app.UseMiddleware<AuthenticationBasicMiddleware>();
+
 app.UseSoapEndpoint<IBasicAuthDemoSoapService>("/BasicAuthDemoSoapService.asmx", new SoapEncoderOptions());
+
 
 app.Run();

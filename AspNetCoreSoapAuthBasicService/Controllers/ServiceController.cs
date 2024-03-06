@@ -55,7 +55,6 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
         [HttpPost]
         [Route("/Service/Authbasic")]
-        [Authorize]
         public ActionResult GetAuthbasic()
         {
             string htmlContent = $@"

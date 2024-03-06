@@ -1,5 +1,8 @@
-﻿namespace AspNetCoreSoapAuthBasicService.SoapServices
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace AspNetCoreSoapAuthBasicService.SoapServices
 {
+
     public class BasicAuthDemoSoapService : IBasicAuthDemoSoapService
     {
 
