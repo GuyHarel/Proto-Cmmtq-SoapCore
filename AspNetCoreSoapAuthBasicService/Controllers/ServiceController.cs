@@ -26,6 +26,8 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
         public ActionResult Get()
         {
 
+            System.IO.File.WriteAllText("test.txt", "ceci est un test");
+
             Console.WriteLine("ceci est un test de console");
 
 
