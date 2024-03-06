@@ -15,7 +15,8 @@
       "launchUrl": "Service",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SoapUser": "test123"
+        "SoapUser": "user345",
+        "SoapPassword": "SOAP!!"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7248;http://localhost:5108"

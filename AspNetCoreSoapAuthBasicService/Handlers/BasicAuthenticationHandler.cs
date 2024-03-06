@@ -10,7 +10,9 @@ namespace AspNetCoreSoapAuthBasicService.Handlers
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
-        public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder) : base(options, logger, encoder)
+        public BasicAuthenticationHandler(
+            IOptionsMonitor<AuthenticationSchemeOptions> options, 
+            ILoggerFactory logger, UrlEncoder encoder) : base(options, logger, encoder)
         {
         }
 
@@ -21,6 +23,9 @@ namespace AspNetCoreSoapAuthBasicService.Handlers
 
             try
             {
+                var soapUser = Environment.GetEnvironmentVariable("SoapUser");
+                var soapPassword = Environment.GetEnvironmentVariable("SoapPassword");
+
                 var test = Request.Headers["Authorization"];
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
                 var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
@@ -28,7 +33,7 @@ namespace AspNetCoreSoapAuthBasicService.Handlers
                 var username = credentials[0];
                 var password = credentials[1];
 
-                if (username == "user" && password == "password")
+                if (username == soapUser && password == soapPassword)
                 {
                     var claims = new[] { new Claim(ClaimTypes.Name, username) };
                     var identity = new ClaimsIdentity(claims, Scheme.Name);
