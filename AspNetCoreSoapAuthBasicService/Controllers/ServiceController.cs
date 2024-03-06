@@ -21,6 +21,7 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
         [HttpGet]
         [Route("/Service")]
+        [Authorize]
         public ActionResult Get()
         {
             var hostName = _configuration.GetSection("Service:HostName").Value;
@@ -69,6 +70,15 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
                 </html>";
 
             return new ContentResult() { Content = htmlContent, ContentType = "text/html" };
+
+        }
+
+        [HttpPost]
+        [Route("/BasicAuthDemoSoapService.asmx")]
+        //[Authorize]
+        public ActionResult PostSoap()
+        {
+            return RedirectPermanent("https://localhost:7248/BasicAuthDemoSoapService.asmx");
 
         }
     }
