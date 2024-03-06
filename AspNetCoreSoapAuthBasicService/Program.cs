@@ -23,6 +23,8 @@ builder.Services.AddAuthentication("BasicAuthentication")
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
 
+builder.Services.AddApplicationInsightsTelemetry();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
