@@ -21,7 +21,7 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
         [HttpGet]
         [Route("/Service")]
-        [Authorize]
+        //[Authorize]
         public ActionResult Get()
         {
             var hostName = _configuration.GetSection("Service:HostName").Value;

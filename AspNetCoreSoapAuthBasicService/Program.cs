@@ -28,9 +28,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection(); // Renvoi automatique des HTTP vers HTTPS
 
-// Inutile:
-//app.UseAuthentication();
-//app.UseAuthorization();
+// Inutile (mais recommendé)
+app.UseAuthentication();  // Active le middle ware d'authentication
+app.UseAuthorization();  // Active le middleware d'autorisation
 
 app.MapControllers();  // configure pipeline routage, map des endpoints, routes
 
