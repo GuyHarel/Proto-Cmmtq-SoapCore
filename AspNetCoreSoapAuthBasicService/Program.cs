@@ -1,4 +1,3 @@
-using AspNetCoreSoapAuthBasicService;
 using AspNetCoreSoapAuthBasicService.Middlewares;
 using AspNetCoreSoapAuthBasicService.SoapServices;
 using Microsoft.AspNetCore.Authentication;
@@ -7,6 +6,7 @@ using SoapCore.Extensibility;
 using System.ServiceModel.Channels;
 using System.ServiceModel;
 using AspNetCoreSoapAuthBasicService.Handlers;
+using AspNetCoreSoapAuthBasicService.Transformers;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
