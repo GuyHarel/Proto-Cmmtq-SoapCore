@@ -22,9 +22,13 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
         [HttpGet]
         [Route("/Service")]
-        [Authorize]
+        //[Authorize]
         public ActionResult Get()
         {
+
+            _logger.LogInformation("ceci est un test de LogInformation");
+            _logger.LogError("ceci est un test de LogError");
+
             var hostName = _configuration.GetSection("Service:HostName").Value;
 
             hostName += "/BasicAuthDemoSoapService.asmx";
