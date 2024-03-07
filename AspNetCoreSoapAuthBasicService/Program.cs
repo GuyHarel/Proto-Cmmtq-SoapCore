@@ -3,10 +3,9 @@ using AspNetCoreSoapAuthBasicService.SoapServices;
 using Microsoft.AspNetCore.Authentication;
 using SoapCore;
 using SoapCore.Extensibility;
-using System.ServiceModel.Channels;
-using System.ServiceModel;
 using AspNetCoreSoapAuthBasicService.Handlers;
 using AspNetCoreSoapAuthBasicService.Transformers;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -23,7 +22,15 @@ builder.Services.AddAuthentication("BasicAuthentication")
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
 
-builder.Services.AddApplicationInsightsTelemetry();
+// Logging
+builder.Logging.AddApplicationInsights(
+    configureTelemetryConfiguration: (config) => 
+        config.ConnectionString = builder.Configuration.GetConnectionString("InstrumentationKey=79da0935-963c-48a0-bc28-71557cae03dd;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/"),
+        configureApplicationInsightsLoggerOptions: (options) => { }
+    );
+
+builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Trace);
+
 
 var app = builder.Build();
 
