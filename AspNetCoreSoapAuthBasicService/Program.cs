@@ -23,9 +23,11 @@ builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultException
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
 
 // Logging
+var loggingConnection = builder.Configuration.GetConnectionString("ApplicationInsights");
+
 builder.Logging.AddApplicationInsights(
     configureTelemetryConfiguration: (config) => 
-        config.ConnectionString = builder.Configuration.GetConnectionString("InstrumentationKey=79da0935-963c-48a0-bc28-71557cae03dd;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/"),
+        config.ConnectionString = loggingConnection,
         configureApplicationInsightsLoggerOptions: (options) => { }
     );
 
