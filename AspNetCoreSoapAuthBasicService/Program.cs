@@ -23,7 +23,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
 
-// Logging
+// Logging vers fichier
 builder.Logging.AddAzureWebAppDiagnostics();
 builder.Services.Configure<AzureFileLoggerOptions>(options => 
 {
@@ -31,6 +31,13 @@ builder.Services.Configure<AzureFileLoggerOptions>(options =>
     options.FileSizeLimit = 50 * 1024;
     options.RetainedFileCountLimit = 5;
 });
+
+// Logging vers blob
+builder.Services.Configure<AzureBlobLoggerOptions>(options =>
+{
+    options.BlobName = "journal.txt";
+});
+
 
 //var loggingConnection = builder.Configuration.GetConnectionString("ApplicationInsights");
 
