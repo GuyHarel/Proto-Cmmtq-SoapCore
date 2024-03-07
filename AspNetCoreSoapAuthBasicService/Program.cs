@@ -6,6 +6,7 @@ using SoapCore.Extensibility;
 using AspNetCoreSoapAuthBasicService.Handlers;
 using AspNetCoreSoapAuthBasicService.Transformers;
 using Microsoft.Extensions.Logging.ApplicationInsights;
+using Microsoft.Extensions.Logging.AzureAppServices;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -23,13 +24,21 @@ builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultException
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
 
 // Logging
-var loggingConnection = builder.Configuration.GetConnectionString("ApplicationInsights");
+builder.Logging.AddAzureWebAppDiagnostics();
+builder.Services.Configure<AzureFileLoggerOptions>(options => 
+{
+    options.FileName = "logs-";
+    options.FileSizeLimit = 50 * 1024;
+    options.RetainedFileCountLimit = 5;
+});
 
-builder.Logging.AddApplicationInsights(
-    configureTelemetryConfiguration: (config) => 
-        config.ConnectionString = loggingConnection,
-        configureApplicationInsightsLoggerOptions: (options) => { }
-    );
+//var loggingConnection = builder.Configuration.GetConnectionString("ApplicationInsights");
+
+//builder.Logging.AddApplicationInsights(
+//    configureTelemetryConfiguration: (config) => 
+//        config.ConnectionString = loggingConnection,
+//        configureApplicationInsightsLoggerOptions: (options) => { }
+//    );
 
 builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Trace);
 
