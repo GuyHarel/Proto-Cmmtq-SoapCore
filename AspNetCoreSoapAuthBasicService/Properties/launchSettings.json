@@ -16,7 +16,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "SoapUser": "user345",
-        "SoapPassword": "SOAP!!"
+        "SoapPassword": "SOAP!!",
+        "Logging:LogLevel:AspNetCoreSoapAuthBasicService.Controllers.LoggingController": "Information"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7248;http://localhost:5108"
