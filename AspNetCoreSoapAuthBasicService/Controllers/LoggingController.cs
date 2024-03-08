@@ -29,8 +29,8 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
 
             //		log4j.appender.guy.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p %c [%X{noConfirmation}] -> %m%n
 
-            _logger.LogInformation(chaineHeure + " - " + "ceci est un test de LogInformation");
-            _logger.LogError(chaineHeure + " - " + "ceci est un test de LogError");
+            _logger.LogInformation("/Log information");
+            _logger.LogError("/Log error");
 
             return new JsonResult(new { result = "ok", Test_var1 = Test_var1 }) { ContentType = "application/json" };
         }
