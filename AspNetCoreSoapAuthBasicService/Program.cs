@@ -24,13 +24,13 @@ builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultException
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
 
 // Logging vers fichier
-//builder.Logging.AddAzureWebAppDiagnostics();
-//builder.Services.Configure<AzureFileLoggerOptions>(options => 
-//{
-//    options.FileName = "logs-";
-//    options.FileSizeLimit = 50 * 1024;
-//    options.RetainedFileCountLimit = 5;
-//});
+builder.Logging.AddAzureWebAppDiagnostics();
+builder.Services.Configure<AzureFileLoggerOptions>(options =>
+{
+    options.FileName = "logs-";
+    options.FileSizeLimit = 50 * 1024;
+    options.RetainedFileCountLimit = 5;
+});
 
 //// Logging vers blob
 //builder.Services.Configure<AzureBlobLoggerOptions>(options =>
