@@ -39,13 +39,15 @@ builder.Services.Configure<AzureBlobLoggerOptions>(options =>
 });
 
 
-//var loggingConnection = builder.Configuration.GetConnectionString("ApplicationInsights");
+var loggingConnection = builder.Configuration.GetConnectionString("ApplicationInsights");
 
-//builder.Logging.AddApplicationInsights(
-//    configureTelemetryConfiguration: (config) => 
-//        config.ConnectionString = loggingConnection,
-//        configureApplicationInsightsLoggerOptions: (options) => { }
-//    );
+builder.Logging.AddApplicationInsights(
+    configureTelemetryConfiguration: (config) =>
+        config.ConnectionString = loggingConnection,
+        configureApplicationInsightsLoggerOptions: (options) => { }
+    );
+
+
 
 builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Trace);
 
