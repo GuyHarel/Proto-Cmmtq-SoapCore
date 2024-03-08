@@ -25,12 +25,13 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
         //[Authorize]
         public ActionResult Get()
         {
-            var chaineHeure = DateTime.Now.ToLongDateString();
+            var chaineHeure = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             //System.IO.File.WriteAllText("test.txt", "ceci est un test");
 
             //Console.WriteLine("ceci est un test de console");
 
+            //		log4j.appender.guy.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p %c [%X{noConfirmation}] -> %m%n
 
             _logger.LogInformation(chaineHeure + " - " + "ceci est un test de LogInformation");
             _logger.LogError(chaineHeure + " - " + "ceci est un test de LogError");
