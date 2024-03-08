@@ -7,6 +7,7 @@ using AspNetCoreSoapAuthBasicService.Handlers;
 using AspNetCoreSoapAuthBasicService.Transformers;
 using Microsoft.Extensions.Logging.ApplicationInsights;
 using Microsoft.Extensions.Logging.AzureAppServices;
+using AspNetCoreSoapAuthBasicService.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -23,32 +24,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
 
-// Logging vers fichier
-builder.Logging.AddAzureWebAppDiagnostics();
-builder.Services.Configure<AzureFileLoggerOptions>(options =>
-{
-    options.FileName = "logs-";
-    options.FileSizeLimit = 50 * 1024;
-    options.RetainedFileCountLimit = 5;
-});
-
-//// Logging vers blob
-//builder.Services.Configure<AzureBlobLoggerOptions>(options =>
-//{
-//    options.BlobName = "journal.txt";
-//});
-
-
-var loggingConnection = builder.Configuration.GetConnectionString("ApplicationInsights");
-
-builder.Logging.AddApplicationInsights(
-    configureTelemetryConfiguration: (config) =>
-        config.ConnectionString = loggingConnection,
-        configureApplicationInsightsLoggerOptions: (options) => { }
-    );
-
-builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
-
+builder.ConfigAzureTextLogging();
 
 var app = builder.Build();
 
