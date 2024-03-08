@@ -25,14 +25,15 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
         //[Authorize]
         public ActionResult Get()
         {
+            var chaineHeure = DateTime.Now.ToLongDateString();
 
-            System.IO.File.WriteAllText("test.txt", "ceci est un test");
+            //System.IO.File.WriteAllText("test.txt", "ceci est un test");
 
-            Console.WriteLine("ceci est un test de console");
+            //Console.WriteLine("ceci est un test de console");
 
 
-            _logger.LogInformation("ceci est un test de LogInformation");
-            _logger.LogError("ceci est un test de LogError");
+            _logger.LogInformation(chaineHeure + " - " + "ceci est un test de LogInformation");
+            _logger.LogError(chaineHeure + " - " + "ceci est un test de LogError");
 
             var hostName = _configuration.GetSection("Service:HostName").Value;
 
