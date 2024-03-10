@@ -8,6 +8,7 @@ using AspNetCoreSoapAuthBasicService.Transformers;
 using Microsoft.Extensions.Logging.ApplicationInsights;
 using Microsoft.Extensions.Logging.AzureAppServices;
 using AspNetCoreSoapAuthBasicService.Azure;
+using AspNetCoreSoapAuthBasicService;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -17,14 +18,22 @@ var environment = builder.Environment;
 builder.Services.AddControllers(); // MVC, routage, controleur, modèle, injection
 builder.Services.AddSoapCore();
 
-// Ajouter l'authentication basic (pour les route de controler avec  [Authorize]
+// Ajouter l'authentication basic (pour les route de controler avec  [Authorize], et pour le middleware soap ci bas
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
+builder.Services.AddSingleton<ILoggingManager, LoggingManager>();
 
-builder.ConfigAzureTextLogging();
+// Configurer le logging dans fichier text dans Azure
+builder.Logging.AddAzureWebAppDiagnostics();
+builder.Services.Configure<AzureFileLoggerOptions>(options =>
+{
+    options.FileName = "logs-";
+    options.FileSizeLimit = 50 * 1024;
+    options.RetainedFileCountLimit = 5;
+});
 
 var app = builder.Build();
 
@@ -37,9 +46,9 @@ app.UseAuthorization();  // Active le middleware d'autorisation
 
 app.MapControllers();  // configure pipeline routage, map des endpoints, routes
 
-app.UseMiddleware<AspNetCoreSoapAuthBasicService.Middlewares.SoapRequestMiddleware>();
+app.UseMiddleware<AspNetCoreSoapAuthBasicService.Middlewares.SoapRequestMiddleware>();  // Gestion des URL asmx
 
-app.UseSoapEndpoint<IBasicAuthDemoSoapService>("/BasicAuthDemoSoapService.asmx", new SoapEncoderOptions());
+app.UseSoapEndpoint<IBasicAuthDemoSoapService>("/BasicAuthDemoSoapService.asmx", new SoapEncoderOptions()); // création du asmx par SoapCore
 
 
 app.Run();

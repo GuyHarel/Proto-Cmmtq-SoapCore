@@ -6,10 +6,10 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
     [ApiController]
     public class LoggingController : ControllerBase
     {
-        private readonly ILogger<LoggingController> _logger;
+        private readonly ILoggingManager _logger;
         private readonly IConfiguration _configuration;
 
-        public LoggingController(ILogger<LoggingController> logger, IConfiguration configuration)
+        public LoggingController(ILoggingManager logger, IConfiguration configuration)
         {
             _logger = logger;
             _configuration = configuration;
@@ -22,12 +22,6 @@ namespace AspNetCoreSoapAuthBasicService.Controllers
         {
             var Test_var1 = _configuration.GetSection("Test:Var1").Value;
             var chaineHeure = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            //System.IO.File.WriteAllText("test.txt", "ceci est un test");
-
-            //Console.WriteLine("ceci est un test de console");
-
-            //		log4j.appender.guy.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p %c [%X{noConfirmation}] -> %m%n
 
             _logger.LogInformation("/Log information");
             _logger.LogError("/Log error");
