@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace AspNetCoreSoapAuthBasicService.SoapServices
+namespace TestProject.SoapServices
 {
     [ServiceContract(Namespace = "http://AspNetCoreSoapAuthBasicService.net")]
     public interface IBasicAuthDemoSoapService

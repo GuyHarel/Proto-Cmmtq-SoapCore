@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace AspNetCoreSoapAuthBasicService.SoapServices
+namespace TestProject.SoapServices
 {
     [DataContract]
     public class DemoSoapReponse

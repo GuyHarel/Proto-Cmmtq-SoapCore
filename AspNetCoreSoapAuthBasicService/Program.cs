@@ -1,14 +1,14 @@
-using AspNetCoreSoapAuthBasicService.Middlewares;
-using AspNetCoreSoapAuthBasicService.SoapServices;
+using TestProject.Middlewares;
+using TestProject.SoapServices;
 using Microsoft.AspNetCore.Authentication;
 using SoapCore;
 using SoapCore.Extensibility;
-using AspNetCoreSoapAuthBasicService.Handlers;
-using AspNetCoreSoapAuthBasicService.Transformers;
+using TestProject.Handlers;
+using TestProject.Transformers;
 using Microsoft.Extensions.Logging.ApplicationInsights;
 using Microsoft.Extensions.Logging.AzureAppServices;
-using AspNetCoreSoapAuthBasicService.Azure;
-using AspNetCoreSoapAuthBasicService;
+using TestProject.Azure;
+using TestProject;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -24,7 +24,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
 
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
-builder.Services.AddSingleton<ILoggingManager, LoggingManager>();
+//builder.Services.AddSingleton<ILoggingManager, LoggingManager>();
 
 // Configurer le logging dans fichier text dans Azure
 builder.Logging.AddAzureWebAppDiagnostics();
@@ -46,7 +46,7 @@ app.UseAuthorization();  // Active le middleware d'autorisation
 
 app.MapControllers();  // configure pipeline routage, map des endpoints, routes
 
-app.UseMiddleware<AspNetCoreSoapAuthBasicService.Middlewares.SoapRequestMiddleware>();  // Gestion des URL asmx
+app.UseMiddleware<TestProject.Middlewares.SoapRequestMiddleware>();  // Gestion des URL asmx
 
 app.UseSoapEndpoint<IBasicAuthDemoSoapService>("/BasicAuthDemoSoapService.asmx", new SoapEncoderOptions()); // création du asmx par SoapCore
 

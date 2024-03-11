@@ -1,9 +1,9 @@
-using AspNetCoreSoapAuthBasicService.SoapServices;
+using TestProject.SoapServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace AspNetCoreSoapAuthBasicService.Controllers
+namespace TestProject.Controllers
 {
     [ApiController]
     [Route("[controller]")]

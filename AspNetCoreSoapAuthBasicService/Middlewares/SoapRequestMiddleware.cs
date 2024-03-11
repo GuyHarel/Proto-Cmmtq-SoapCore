@@ -5,7 +5,7 @@ using System.Net;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
-namespace AspNetCoreSoapAuthBasicService.Middlewares
+namespace TestProject.Middlewares
 {
     public class SoapRequestMiddleware
     {

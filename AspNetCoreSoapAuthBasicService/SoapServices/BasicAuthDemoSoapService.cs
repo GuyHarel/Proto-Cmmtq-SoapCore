@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace AspNetCoreSoapAuthBasicService.SoapServices
+namespace TestProject.SoapServices
 {
 
     public class BasicAuthDemoSoapService : IBasicAuthDemoSoapService

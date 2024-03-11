@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging.ApplicationInsights;
 using Microsoft.Extensions.Logging.AzureAppServices;
 
-namespace AspNetCoreSoapAuthBasicService.Azure
+namespace TestProject.Azure
 {
     public static class AzureLoggingExtentions
     {

@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 
-namespace AspNetCoreSoapAuthBasicService.Handlers
+namespace TestProject.Handlers
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {

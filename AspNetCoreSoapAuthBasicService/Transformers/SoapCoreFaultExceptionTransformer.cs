@@ -1,10 +1,10 @@
-﻿using AspNetCoreSoapAuthBasicService.SoapServices;
+﻿using TestProject.SoapServices;
 using SoapCore.Extensibility;
 using System.Runtime.Serialization;
 using System.ServiceModel.Channels;
 using System.Xml;
 
-namespace AspNetCoreSoapAuthBasicService.Transformers
+namespace TestProject.Transformers
 {
     public class SoapCoreFaultExceptionTransformer : IFaultExceptionTransformer
     {

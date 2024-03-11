@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreSoapAuthBasicService
+﻿namespace TestProject
 {
     public interface ILoggingManager
     {

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-namespace AspNetCoreSoapAuthBasicService.SoapServices
+namespace TestProject.SoapServices
 {
     [DataContract]
     public class DemoSoapRequest
