@@ -31,5 +31,22 @@ namespace TestProject.Controllers
 
             return new JsonResult(new { result = "ok", p1 = p1 }) { ContentType = "application/json" };
         }
+
+        [HttpGet]
+        [Route("/LogEx")]
+        public ActionResult GetEx(string? p1)
+        {
+            try
+            {
+                throw new Exception("ceci est une exception de test");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "/Log warning:" + p1);
+            }
+            
+
+            return new JsonResult(new { result = "ok", p1 = p1 }) { ContentType = "application/json" };
+        }
     }
 }

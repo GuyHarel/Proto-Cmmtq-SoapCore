@@ -5,10 +5,9 @@ using SoapCore;
 using SoapCore.Extensibility;
 using TestProject.Handlers;
 using TestProject.Transformers;
-using Microsoft.Extensions.Logging.ApplicationInsights;
-using Microsoft.Extensions.Logging.AzureAppServices;
-using TestProject.Azure;
+using Microsoft.Extensions.Logging;
 using TestProject;
+using Microsoft.Extensions.Logging.AzureAppServices;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -35,13 +34,15 @@ builder.Services.Configure<AzureFileLoggerOptions>(options =>
     options.RetainedFileCountLimit = 5;
 });
 
+
+
 // Configurer le logging dans un blob (dépend de celui ci-haut)
-builder.Services.Configure<AzureBlobLoggerOptions>(config =>
-{
-    config.FileNameFormat = (context) => {
-        return DateTime.Now.ToString("yyyy-MM-dd")+".txt"; 
-    };
-});
+//builder.Services.Configure<AzureBlobLoggerOptions>(config =>
+//{
+//    config.FileNameFormat = (context) => {
+//        return DateTime.Now.ToString("yyyy-MM-dd")+".txt"; 
+//    };
+//});
 
 var app = builder.Build();
 

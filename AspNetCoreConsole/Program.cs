@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AspNetCoreConsole;
+using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
-
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 //var validate = new ValidateSoapMessage();
 //validate.Validate();
@@ -13,4 +15,11 @@ using System.ComponentModel.DataAnnotations;
 //test.Test();
 
 var test = DateTime.Now.ToString("yyyy-MM-dd");
+
+using IHost host = Host.CreateApplicationBuilder(args).Build();
+
+var logger = host.Services.GetRequiredService<ILogger<Program>>();
+
+logger.LogInformation("test de logg");
+
 Console.WriteLine("termine:" + test);
