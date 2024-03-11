@@ -20,16 +20,16 @@ namespace TestProject.Controllers
 
         [HttpGet]
         [Route("/Log")]
-        public ActionResult Get()
+        public ActionResult Get(string? p1)
         {
             //_loggerManager.LogInformation("/Log information");
             //_loggerManager.LogError("/Log error");
 
-            _logger.LogInformation("/Log information");
-            _logger.LogError("/Log error");
-            _logger.LogWarning("/Log warning");
+            _logger.LogInformation("/Log information:"+p1);
+            _logger.LogError("/Log error:" + p1);
+            _logger.LogWarning("/Log warning:" + p1);
 
-            return new JsonResult(new { result = "ok" }) { ContentType = "application/json" };
+            return new JsonResult(new { result = "ok", p1 = p1 }) { ContentType = "application/json" };
         }
     }
 }

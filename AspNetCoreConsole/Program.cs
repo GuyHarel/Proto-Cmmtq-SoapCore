@@ -9,7 +9,8 @@ using System.ComponentModel.DataAnnotations;
 //var test = new XmlSerializeTest();
 //test.Test();
 
-var test = new XmlSerializeSoapTest();
-test.Test();
+//var test = new XmlSerializeSoapTest();
+//test.Test();
 
-Console.WriteLine("termine");
+var test = DateTime.Now.ToString("yyyy-MM-dd");
+Console.WriteLine("termine:" + test);
