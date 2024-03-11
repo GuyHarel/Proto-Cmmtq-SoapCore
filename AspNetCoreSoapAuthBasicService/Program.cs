@@ -39,7 +39,7 @@ builder.Services.Configure<AzureFileLoggerOptions>(options =>
 builder.Services.Configure<AzureBlobLoggerOptions>(config =>
 {
     config.FileNameFormat = (context) => {
-        return DateTime.Now.ToString("yyyy-MM-dd"); 
+        return DateTime.Now.ToString("yyyy-MM-dd")+".txt"; 
     };
 });
 
