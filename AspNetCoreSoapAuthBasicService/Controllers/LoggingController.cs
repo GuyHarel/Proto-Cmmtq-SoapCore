@@ -22,9 +22,6 @@ namespace TestProject.Controllers
         [Route("/Log")]
         public ActionResult Get()
         {
-            var Test_var1 = _configuration.GetSection("Test:Var1").Value;
-            var chaineHeure = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
             //_loggerManager.LogInformation("/Log information");
             //_loggerManager.LogError("/Log error");
 
@@ -32,7 +29,7 @@ namespace TestProject.Controllers
             _logger.LogError("/Log error");
             _logger.LogWarning("/Log warning");
 
-            return new JsonResult(new { result = "ok", Test_var1 = Test_var1 }) { ContentType = "application/json" };
+            return new JsonResult(new { result = "ok" }) { ContentType = "application/json" };
         }
     }
 }

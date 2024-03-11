@@ -27,15 +27,6 @@ namespace TestProject.Controllers
         {
             var chaineHeure = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            //System.IO.File.WriteAllText("test.txt", "ceci est un test");
-
-            //Console.WriteLine("ceci est un test de console");
-
-            //		log4j.appender.guy.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p %c [%X{noConfirmation}] -> %m%n
-
-            _logger.LogInformation(chaineHeure + " - " + "ceci est un test de LogInformation");
-            _logger.LogError(chaineHeure + " - " + "ceci est un test de LogError");
-
             var hostName = _configuration.GetSection("Service:HostName").Value;
 
             hostName += "/BasicAuthDemoSoapService.asmx";
@@ -51,9 +42,9 @@ namespace TestProject.Controllers
                 <body>
                     <ul>
                         <li><a href={hostName}>{hostName}</a></li>
-                        <li>Version GitHub 2024-03-05 09:15</li>
-                        <li>Version SoapUser: {soapUser} </li>
-                        <li>Version SoapPassword: {soapPassword} </li>
+                        <li>Heure: {chaineHeure} </li>
+                        <li>SoapUser: {soapUser} </li>
+                        <li>SoapPassword: {soapPassword} </li>
                     </ul>
                 </body>
                 </html>";
