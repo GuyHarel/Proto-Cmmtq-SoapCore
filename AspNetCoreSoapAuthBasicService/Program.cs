@@ -26,10 +26,11 @@ builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapServic
 //builder.Services.AddSingleton<ILoggingManager, LoggingManager>();
 
 // Configurer le logging dans fichier text dans Azure
+var nomFicherLog = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
 builder.Logging.AddAzureWebAppDiagnostics();
 builder.Services.Configure<AzureFileLoggerOptions>(options =>
 {
-    options.FileName = "j-";
+    options.FileName = nomFicherLog;
     options.FileSizeLimit = 50 * 1024;
     options.RetainedFileCountLimit = 5;
 });
@@ -38,7 +39,7 @@ builder.Services.Configure<AzureFileLoggerOptions>(options =>
 builder.Services.Configure<AzureBlobLoggerOptions>(config =>
 {
     config.FileNameFormat = (context) => {
-        return DateTime.Now.ToString("yyyy-MM-dd")+".txt"; 
+        return nomFicherLog; 
     };
 });
 
