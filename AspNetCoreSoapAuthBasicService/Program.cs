@@ -34,15 +34,13 @@ builder.Services.Configure<AzureFileLoggerOptions>(options =>
     options.RetainedFileCountLimit = 5;
 });
 
-
-
-// Configurer le logging dans un blob (dépend de celui ci-haut)
-//builder.Services.Configure<AzureBlobLoggerOptions>(config =>
-//{
-//    config.FileNameFormat = (context) => {
-//        return DateTime.Now.ToString("yyyy-MM-dd")+".txt"; 
-//    };
-//});
+//Configurer le logging dans un blob (dépend de celui ci-haut)
+builder.Services.Configure<AzureBlobLoggerOptions>(config =>
+{
+    config.FileNameFormat = (context) => {
+        return DateTime.Now.ToString("yyyy-MM-dd")+".txt"; 
+    };
+});
 
 var app = builder.Build();
 
