@@ -28,17 +28,17 @@ builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapServic
 
 // Configurer le logging dans fichier text dans Azure
 builder.Logging.AddAzureWebAppDiagnostics();
-builder.Services.Configure<AzureFileLoggerOptions>(options =>
-{
-    options.FileName = "test-logs-";
-    options.FileSizeLimit = 50 * 1024;
-    options.RetainedFileCountLimit = 5;
-});
+//builder.Services.Configure<AzureFileLoggerOptions>(options =>
+//{
+//    options.FileName = "testlogs";
+//    options.FileSizeLimit = 50 * 1024;
+//    options.RetainedFileCountLimit = 5;
+//});
 
-// Configurer le logging dans un blob (dépend de celui ci-haut)
-builder.Services.Configure<AzureBlobLoggerOptions>(config => {
-    config.BlobName = "blob-log.txt";
-});
+//// Configurer le logging dans un blob (dépend de celui ci-haut)
+//builder.Services.Configure<AzureBlobLoggerOptions>(config => {
+//    config.BlobName = "testblob";
+//});
 
 var app = builder.Build();
 
