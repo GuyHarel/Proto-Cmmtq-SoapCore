@@ -16,10 +16,19 @@ using Microsoft.Extensions.DependencyInjection;
 
 var test = DateTime.Now.ToString("yyyy-MM-dd");
 
-using IHost host = Host.CreateApplicationBuilder(args).Build();
-
-var logger = host.Services.GetRequiredService<ILogger<Program>>();
-
-logger.LogInformation("test de logg");
+ValidateOAuthToken.VAlidate();
 
 Console.WriteLine("termine:" + test);
+
+
+void Injection()
+{
+    // Injection dans program.cs:
+
+    using IHost host = Host.CreateApplicationBuilder(args).Build();
+
+    var logger = host.Services.GetRequiredService<ILogger<Program>>();
+
+    logger.LogInformation("test de logg");
+}
+
