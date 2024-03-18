@@ -23,19 +23,23 @@ namespace TestProject.Middlewares
 
             try
             {
-                if (context.Request.Path.HasValue &&
-                    context.Request.Path.Value.EndsWith(".asmx", StringComparison.OrdinalIgnoreCase))
+                if (context.Request.Method == HttpMethod.Post.Method)
                 {
-                    var authenticated = context.User is not null &&
-                        context.User.Identity is not null
-                        && context.User.Identity.IsAuthenticated;
-
-                    if (!authenticated)
+                    if (context.Request.Path.HasValue &&
+                        context.Request.Path.Value.EndsWith(".asmx", StringComparison.OrdinalIgnoreCase))
                     {
-                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        return;
+                        var authenticated = context.User is not null &&
+                            context.User.Identity is not null
+                            && context.User.Identity.IsAuthenticated;
+
+                        if (!authenticated)
+                        {
+                            context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                            return;
+                        }
                     }
                 }
+
             }
             catch (Exception ex)
             {
