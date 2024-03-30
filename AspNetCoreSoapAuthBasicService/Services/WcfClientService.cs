@@ -30,6 +30,10 @@ namespace AspNetCoreSoapAuthBasicService.Services
                     content.Headers.Add("action", "http://tempuri.org/IRecupererFichier/TelechargerFichier");
 
                     var reponse = client.Send(request);
+
+					var reponseContenu = reponse.Content.ReadAsStringAsync().Result;
+
+					var test = 123;
                 }
 
             }
