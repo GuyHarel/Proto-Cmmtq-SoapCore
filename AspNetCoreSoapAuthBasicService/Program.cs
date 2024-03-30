@@ -8,6 +8,7 @@ using TestProject.Transformers;
 using Microsoft.Extensions.Logging;
 using TestProject;
 using Microsoft.Extensions.Logging.AzureAppServices;
+using AspNetCoreSoapAuthBasicService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -16,6 +17,7 @@ var environment = builder.Environment;
 
 builder.Services.AddControllers(); // MVC, routage, controleur, modèle, injection
 builder.Services.AddSoapCore();
+builder.Services.AddHttpClient();
 
 // Ajouter l'authentication basic (pour les route de controler avec  [Authorize], et pour le middleware soap ci bas
 builder.Services.AddAuthentication("BasicAuthentication")
@@ -23,6 +25,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
 
 builder.Services.AddSingleton<IFaultExceptionTransformer, SoapCoreFaultExceptionTransformer>();
 builder.Services.AddSingleton<IBasicAuthDemoSoapService, BasicAuthDemoSoapService>();
+builder.Services.AddSingleton<IWcfClientService,  WcfClientService>();
 //builder.Services.AddSingleton<ILoggingManager, LoggingManager>();
 
 // Configurer le logging dans fichier text dans Azure

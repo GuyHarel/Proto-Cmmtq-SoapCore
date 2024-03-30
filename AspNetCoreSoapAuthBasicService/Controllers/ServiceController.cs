@@ -2,6 +2,7 @@ using TestProject.SoapServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using AspNetCoreSoapAuthBasicService.Services;
 
 namespace TestProject.Controllers
 {
@@ -11,13 +12,16 @@ namespace TestProject.Controllers
     {
         private readonly ILogger<ServiceController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly IWcfClientService wcfClientService;
 
         public ServiceController(
             ILogger<ServiceController> logger,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IWcfClientService wcfClientService)
         {
             _logger = logger;
             _configuration = configuration;
+            this.wcfClientService = wcfClientService;
         }
 
         [HttpGet]
@@ -86,6 +90,27 @@ namespace TestProject.Controllers
         public ActionResult PostSoap()
         {
             return RedirectPermanent("https://localhost:7248/BasicAuthDemoSoapService.asmx");
+
+        }
+
+        [HttpGet]
+        [Route("/Service/RecupererFichier")]
+        public ActionResult RecupererFichier()
+        {
+            wcfClientService.RecupererFichier();
+
+            string htmlContent = $@"
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>RecupererFichier</title>
+                </head>
+                <body>
+                   <p>RecupererFichier</p>
+                </body>
+                </html>";
+
+            return new ContentResult() { Content = htmlContent, ContentType = "text/html" };
 
         }
     }
