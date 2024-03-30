@@ -18,22 +18,16 @@ namespace AspNetCoreSoapAuthBasicService.Services
 			{
                 using (var client = httpClientFactory.CreateClient())
                 {
-                    var content =  new StringContent(Requests.RecupererFichier, System.Text.Encoding.UTF8, "application/soap+xml");
-
-                    // Ajouter les en-têtes requis
-                    content.Headers.Add("action", "http://tempuri.org/IRecupererFichier/TelechargerFichier");
-
-                    // Assigner le contenu à une requête HTTP
                     var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost/WcfServiceNet472AuthBasic/RecupererFichierService.svc/endpointWcfServiceNet472AuthBasic");
 
-                    request.Content = content;
-
-                    // Ajouter les autres en-têtes requis
                     request.Headers.Add("Connection", "Keep-Alive");
                     request.Headers.Add("Accept-Encoding", "gzip,deflate");
                     request.Headers.Add("Host", "localhost");
                     request.Headers.Add("User-Agent", "Apache-HttpClient/4.5.5 (Java/16.0.1)");
 
+                    var content = new StringContent(Requests.RecupererFichier, System.Text.Encoding.UTF8, "application/soap+xml");
+                    request.Content = content;
+                    content.Headers.Add("action", "http://tempuri.org/IRecupererFichier/TelechargerFichier");
 
                     var reponse = client.Send(request);
                 }
@@ -62,9 +56,7 @@ namespace AspNetCoreSoapAuthBasicService.Services
 			xmlns:wsu=""http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"">
 			<wsse:UsernameToken wsu:Id=""UsernameToken-8E7F5D71FB52819FAE17117434355581"">
 				<wsse:Username>util01</wsse:Username>
-				<wsse:Password
-					Type=""http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"">
-					mdp01</wsse:Password>
+				<wsse:Password Type=""http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"">mdp01</wsse:Password>
 				<wsse:Nonce
 					EncodingType=""http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary"">
 					z510JUE49SLh1B117zMxIA==</wsse:Nonce>
