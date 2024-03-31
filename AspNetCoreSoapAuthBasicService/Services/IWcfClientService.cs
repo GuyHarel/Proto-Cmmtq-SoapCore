@@ -2,6 +2,7 @@
 {
     public interface IWcfClientService
     {
-        void RecupererFichier();
+        void RecupererFichier1();
+        void RecupererFichier2();
     }
 }

@@ -97,7 +97,7 @@ namespace TestProject.Controllers
         [Route("/Service/RecupererFichier")]
         public ActionResult RecupererFichier()
         {
-            wcfClientService.RecupererFichier();
+            wcfClientService.RecupererFichier2();
 
             string htmlContent = $@"
                 <!DOCTYPE html>
