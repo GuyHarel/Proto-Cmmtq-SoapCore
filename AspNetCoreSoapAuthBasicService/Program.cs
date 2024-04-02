@@ -30,11 +30,11 @@ builder.Services.AddSingleton<IWcfClientService,  WcfClientService>();
 //builder.Services.AddSingleton<ILoggingManager, LoggingManager>();
 
 // Configurer le logging dans fichier text dans Azure
-//var prefixLogFile = "gh-log-";
+var prefixLogFile = "log-";
 builder.Logging.AddAzureWebAppDiagnostics();
 builder.Services.Configure<AzureFileLoggerOptions>(options =>
 {
-    //options.FileName = prefixLogFile;
+    options.FileName = prefixLogFile;
     options.FileSizeLimit = 50 * 1024;
     options.RetainedFileCountLimit = 5;
 });
