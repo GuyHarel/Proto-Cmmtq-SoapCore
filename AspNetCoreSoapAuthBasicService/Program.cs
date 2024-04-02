@@ -43,11 +43,11 @@ builder.Services.Configure<AzureFileLoggerOptions>(options =>
 var nomFicherLog = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
 builder.Services.Configure<AzureBlobLoggerOptions>(config =>
 {
-    config.BlobName = "-n1-";
     config.FileNameFormat = (context) =>
     {
         var timestamp = context.Timestamp;
-        return $"{context.AppName}/{timestamp.Year}/{timestamp.Month:00}/{timestamp.Day:00}/{timestamp.Hour:00}/-n2-";
+        var logFileName = "gh-log-file.txt";
+        return $"{context.AppName}/{timestamp.Year}/{timestamp.Month:00}/{timestamp.Day:00}/{timestamp.Hour:00}/{logFileName}";
     };
 });
 
