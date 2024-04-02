@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using TestProject;
 using Microsoft.Extensions.Logging.AzureAppServices;
 using AspNetCoreSoapAuthBasicService.Services;
+using SoapCore.ServiceModel;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment;
@@ -42,8 +43,11 @@ builder.Services.Configure<AzureFileLoggerOptions>(options =>
 var nomFicherLog = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
 builder.Services.Configure<AzureBlobLoggerOptions>(config =>
 {
-    config.FileNameFormat = (context) => {
-        return nomFicherLog; 
+    config.BlobName = "-n1-";
+    config.FileNameFormat = (context) =>
+    {
+        var timestamp = context.Timestamp;
+        return $"{context.AppName}/{timestamp.Year}/{timestamp.Month:00}/{timestamp.Day:00}/{timestamp.Hour:00}/-n2-";
     };
 });
 
