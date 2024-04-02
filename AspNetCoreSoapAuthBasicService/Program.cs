@@ -30,24 +30,23 @@ builder.Services.AddSingleton<IWcfClientService,  WcfClientService>();
 //builder.Services.AddSingleton<ILoggingManager, LoggingManager>();
 
 // Configurer le logging dans fichier text dans Azure
-var prefixLogFile = "gh-log-";
+//var prefixLogFile = "gh-log-";
 builder.Logging.AddAzureWebAppDiagnostics();
 builder.Services.Configure<AzureFileLoggerOptions>(options =>
 {
-    options.FileName = prefixLogFile;
+    //options.FileName = prefixLogFile;
     options.FileSizeLimit = 50 * 1024;
     options.RetainedFileCountLimit = 5;
 });
 
 //Configurer le logging dans un blob (dépend de celui ci-haut)
-var nomFicherLog = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+var logFileName = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
 builder.Services.Configure<AzureBlobLoggerOptions>(config =>
 {
     config.FileNameFormat = (context) =>
     {
         var timestamp = context.Timestamp;
-        var logFileName = "gh-log-file.txt";
-        return $"{context.AppName}/{timestamp.Year}/{timestamp.Month:00}/{timestamp.Day:00}/{timestamp.Hour:00}/{logFileName}";
+        return $"{context.AppName}/{timestamp.Year}/{timestamp.Month:00}/{timestamp.Day:00}/{logFileName}";
     };
 });
 
